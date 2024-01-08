@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Template Creator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <!-- Add any additional CSS or JS here -->
+</head>
+<body>
+    <header>
+        <!-- Navigation bar or header content -->
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Mail Template Creator</h1>
+            <p>Welcome to the Mail Template Creator! This tool leverages the power of ChatGPT to generate personalized email templates based on your specific needs.</p>
+            
+            <form id="templateForm">
+                <label for="recipientName">Recipient's Name:</label><br>
+                <input type="text" id="recipientName" name="recipientName" placeholder="Enter recipient's name"><br>
+        
+                <label for="emailSubject">Email Subject:</label><br>
+                <input type="text" id="emailSubject" name="emailSubject" placeholder="Enter email subject"><br>
+        
+                <label for="keyPoints">Key Points:</label><br>
+                <textarea id="keyPoints" name="keyPoints" rows="4" cols="50" placeholder="List key points or topics"></textarea><br>
+        
+                <label for="tone">Tone:</label><br>
+                <select id="tone" name="tone">
+                    <option value="formal">Formal</option>
+                    <option value="informal">Informal</option>
+                    <option value="persuasive">Persuasive</option>
+                </select><br>
+        
+                <label for="additionalInstructions">Additional Instructions:</label><br>
+                <textarea id="additionalInstructions" name="additionalInstructions" rows="4" cols="50" placeholder="Any specific instructions"></textarea><br>
+        
+                <input type="submit" value="Generate Template">
+            </form>
+        
+            <div id="templateOutput" style="display:none;">
+                <h2>Generated Email Template</h2>
+                <textarea id="editableTemplate" rows="10" cols="50"></textarea>
+                <!-- Add any other buttons or features as needed -->
+            </div>
+        
+            <div id="feedbackSection">
+                <h2>Provide Feedback</h2>
+                <textarea id="feedback" name="feedback" rows="4" cols="50" placeholder="Your feedback"></textarea><br>
+                <input type="button" value="Submit Feedback">
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>
