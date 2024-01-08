@@ -15,8 +15,8 @@ if (!isset($_ENV['OPENAI_API_KEY'])) {
 // Check if the script received a POST request
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Input validation
-    $recipientName = filter_input(INPUT_POST, 'recipientName', FILTER_SANITIZE_STRING);
-    $emailSubject = filter_input(INPUT_POST, 'emailSubject', FILTER_SANITIZE_STRING);
+    // $recipientName = filter_input(INPUT_POST, 'recipientName', FILTER_SANITIZE_STRING);
+    // $emailSubject = filter_input(INPUT_POST, 'emailSubject', FILTER_SANITIZE_STRING);
     $keyPoints = filter_input(INPUT_POST, 'keyPoints', FILTER_SANITIZE_STRING);
     $tone = filter_input(INPUT_POST, 'tone', FILTER_SANITIZE_STRING);
     $additionalInstructions = filter_input(INPUT_POST, 'additionalInstructions', FILTER_SANITIZE_STRING);
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $openai_api_key = $_ENV['OPENAI_API_KEY'];
 
     // Creating the prompt
-    $prompt = createPrompt($recipientName, $emailSubject, $keyPoints, $tone, $additionalInstructions);
+    $prompt = createPrompt($keyPoints, $tone, $additionalInstructions);
 
     // Sending the request to OpenAI API
     $response = openaiRequest($prompt, $openai_api_key);
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Function to create the prompt
-function createPrompt($recipientName, $emailSubject, $keyPoints, $tone, $additionalInstructions) {
+function createPrompt($keyPoints, $tone, $additionalInstructions) {
     return json_encode([
         "model" => "gpt-3.5-turbo",
         "messages" => [
@@ -63,7 +63,7 @@ function createPrompt($recipientName, $emailSubject, $keyPoints, $tone, $additio
             ],
             [
                 "role" => "user",
-                "content" => "Create an email template addressing {$recipientName} with the subject '{$emailSubject}'. The key points to include are: {$keyPoints}. The tone should be {$tone}. Additional instructions: {$additionalInstructions}. The email should be professional and suitable for a business context."
+                "content" => "Create an email template addressing \{\{recipientName\}\}. Generate the subject line on your own. The key points to include are: {$keyPoints}. The tone should be {$tone}. Additional instructions: {$additionalInstructions}. The email should be professional and suitable for a business context."
             ]
         ]
     ]);
